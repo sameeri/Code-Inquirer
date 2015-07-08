@@ -1,0 +1,25 @@
+{
+  "name": "inquirer-getting-started",
+  "version": "1.0.0",
+  "description": "Getting started with inquirer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sameeri/Code-Inquirer.git"
+  },
+  "keywords": [
+    "Inquirer"
+  ],
+  "author": "Sameeri Marryboyina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sameeri/Code-Inquirer/issues"
+  },
+  "homepage": "https://github.com/sameeri/Code-Inquirer#readme",
+  "devDependencies": {
+    "inquirer": "^0.8.5"
+  }
+}
