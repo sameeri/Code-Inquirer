@@ -1,8 +1,39 @@
 var inquirer = require('inquirer');
-console.log('Inquirer.js api', inquirer);
+var Joi = require('joi');
 
-function doSomething(answers){
-  // Do whateva you want!
+function processAnswers(answers){
+  console.log("And your answers are:", answers);
 }
-var questions = [];
-inquirer.prompt(questions, doSomething);
+
+function validateName(name){
+        return name !== '';
+    }
+
+function validateLName(name){
+       var result =  true;
+           Joi.validate(name, Joi.string().required(), function(err,val){
+           if (err){
+               console.log(err.message);
+               result = err.message;
+           }
+           
+       });
+       return result;
+    }
+
+
+var questions = [
+{
+    message: "What's your first name?",
+    type: "input",
+    name: "firstName",
+    validate: validateName
+},{
+    message: "What's your last name?",
+    type: "input",
+    name: "lastName",
+    validate: validateLName
+},
+
+];
+inquirer.prompt(questions, processAnswers);
