@@ -18,42 +18,60 @@ function onValidation(err,val){
 }
 
 function validateName(name) {
-       return Joi.validate(name, Joi.string().required(), onValidation);
+       var schema =  Joi.string().required();
+       return Joi.validate(name, schema, onValidation);
 }
 
-
 function validateAge(age) {
-       return Joi.validate(age, Joi.number().required().min(10).max(99), onValidation);
+       var schema = Joi.number().required().min(10).max(99);
+       return Joi.validate(age, schema , onValidation);
 }
 
 function validateEmail(email) {
-       return Joi.validate(email, Joi.string().email(), onValidation);
+       var schema = Joi.string().email();
+       return Joi.validate(email, schema , onValidation);
+}
+
+function validateTopics(topics){
+     var schema = Joi.array().min(1);
+     return Joi.validate(topics, schema, onValidation);
 }
 
 var questions = [
-{
-    message: "What's your first name?",
-    type: "input",
-    name: "firstName",
-    validate: validateName
-},
-{
-    message: "What's your last name?",
-    type: "input",
-    name: "lastName",
-    validate: validateName
-},  
-{
-    message: "What's your age?",
-    type: "input",
-    name: "age",
-    validate: validateAge
-},    
-{
-    message: "What's your email?",
-    type: "input",
-    name: "email",
-    validate: validateEmail
-}   
+    {
+        message: "What's your first name?",
+        type: "input",
+        name: "firstName",
+        validate: validateName
+    },
+    {
+        message: "What's your last name?",
+        type: "input",
+        name: "lastName",
+        validate: validateName
+    },  
+    {
+        message: "What's your age?",
+        type: "input",
+        name: "age",
+        validate: validateAge
+    },    
+    {
+        message: "What's your email?",
+        type: "input",
+        name: "email",
+        validate: validateEmail
+    },
+    {
+        message: "What topics would you like to subscribe to?",
+        type: "checkbox",
+        name: "topics",
+        choices: [{name: "JavaScript", checked: true}, 
+                  {name: "C#", checked: false},
+                  {name: "Java"},
+                  {name: "Ruby"},
+                  {name: "Python", checked:false} ],
+        validate: validateTopics
+    }
 ];
 inquirer.prompt(questions, processAnswers);
