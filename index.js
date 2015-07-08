@@ -6,37 +6,28 @@ function processAnswers(answers){
   console.log("And your answers are:", answers);
 }
 
-function validateAge(age) {
-       var valid;
-       Joi.validate(age, Joi.number().required().min(10).max(99), function(err,val){
-           if (err){
-               console.log(err.message);
-               valid = err.message;           
-           }
-           else{
-               valid = true;
-               
-           }
+function onValidation(err,val){
+    if(err){
+        console.log(err.message);
+        return err.message;         
+    }
+    else{
+        return true;            
+    }
            
-       });
-       return valid;
+}
+
+function validateName(name) {
+       return Joi.validate(name, Joi.string().required(), onValidation);
 }
 
 
-function validateName(name) {
-       var valid;
-       Joi.validate(name, Joi.string().required(), function(err,val){
-           if (err){
-               console.log(err.message);
-               valid = err.message;           
-           }
-           else{
-               valid = true;
-               
-           }
-           
-       });
-       return valid;
+function validateAge(age) {
+       return Joi.validate(age, Joi.number().required().min(10).max(99), onValidation);
+}
+
+function validateEmail(email) {
+       return Joi.validate(email, Joi.string().email(), onValidation);
 }
 
 var questions = [
@@ -58,6 +49,11 @@ var questions = [
     name: "age",
     validate: validateAge
 },    
-
+{
+    message: "What's your email?",
+    type: "input",
+    name: "email",
+    validate: validateEmail
+}   
 ];
 inquirer.prompt(questions, processAnswers);
