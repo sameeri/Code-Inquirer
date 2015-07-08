@@ -6,28 +6,38 @@ function processAnswers(answers){
   console.log("And your answers are:", answers);
 }
 
-function validateName(name){
-        return name !== '';
-    }
-
-function validateAge(age)
-{
-   var reg = /^\d+$/;
-   return reg.test(age) || "Age should be a number!";
-}
-
-function validateLastName(name){
-       var result =  true;
-           Joi.validate(name, Joi.string().required(), function(err,val){
+function validateAge(age) {
+       var valid;
+       Joi.validate(age, Joi.number().required().min(10).max(99), function(err,val){
            if (err){
                console.log(err.message);
-               result = err.message;
+               valid = err.message;           
+           }
+           else{
+               valid = true;
+               
            }
            
        });
-       return result;
-    }
+       return valid;
+}
 
+
+function validateName(name) {
+       var valid;
+       Joi.validate(name, Joi.string().required(), function(err,val){
+           if (err){
+               console.log(err.message);
+               valid = err.message;           
+           }
+           else{
+               valid = true;
+               
+           }
+           
+       });
+       return valid;
+}
 
 var questions = [
 {
