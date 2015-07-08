@@ -72,6 +72,18 @@ var questions = [
                   {name: "Ruby"},
                   {name: "Python", checked:false} ],
         validate: validateTopics
+    },
+    {
+        message: "How would you best describe yourself?",
+        type: "list",
+        name: "role",
+        choices: ["Beginner", "Intermediate", "Coding Ninja" ]
+    },
+    {
+        message: "How would you rate us?",
+        type: "rawlist",
+        name: "feedback",
+        choices: ["Awesome", "Good", "Okay", "You suck" ]
     }
 ];
 inquirer.prompt(questions, processAnswers);
