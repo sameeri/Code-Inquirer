@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/sameeri/Code-Inquirer#readme",
   "devDependencies": {
-    "inquirer": "^0.8.5"
+    "inquirer": "^0.8.5",
+    "lodash": "^3.10.0"
   }
 }
